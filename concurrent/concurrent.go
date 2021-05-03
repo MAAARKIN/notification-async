@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"os/signal"
 	"sync"
 	"time"
 
@@ -97,11 +96,4 @@ func Start(ctx context.Context, op model.Options, numberOfWorkers int) {
 
 	fmt.Printf("\n%2fs", time.Since(start).Seconds())
 	fmt.Println()
-}
-
-func onSignal(s os.Signal, h func()) {
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, s)
-	<-c
-	h()
 }
