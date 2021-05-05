@@ -49,9 +49,9 @@ func main() {
 
 }
 
-func onSignal(s os.Signal, h func()) {
+func onSignal(s os.Signal, cancel func()) {
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, s)
 	<-c
-	h()
+	cancel()
 }
